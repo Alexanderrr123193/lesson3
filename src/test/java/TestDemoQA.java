@@ -2,7 +2,7 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -11,7 +11,6 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TestDemoQA {
@@ -32,13 +31,13 @@ public class TestDemoQA {
         $("#userEmail").setValue("mblo@email.com");
         $("label[for='gender-radio-1']").click();
         $("#userNumber").setValue("1234567890");
-        $("#dateOfBirthInput").click();  // Открываем календарь
-        $(".react-datepicker__month-select").selectOption("December");  // Выбор месяца
-        $(".react-datepicker__year-select").selectOption("1992");      // Выбор года
-        $(".react-datepicker__day--027").click();  // Выбор 10-го числа
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption("December");
+        $(".react-datepicker__year-select").selectOption("1992");
+        $(".react-datepicker__day--027").click();
         $("#subjectsInput").setValue("E");
-
-                $("#submit").click();
+        $$(".subjects-auto-complete__menu-list div").findBy(text("English")).shouldBe(visible).click();
+        $("#submit").click();
 
 
         $("#output").$("#name").shouldHave(text("Alex"));
