@@ -1,0 +1,18 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter:5.10.0",
+            "com.codeborne:selenide:7.5.0",
+            "org.slf4j:slf4j-api:2.0.9")
+}
+
+test{
+    useJUnitPlatform()
+}
