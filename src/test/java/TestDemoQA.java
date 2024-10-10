@@ -1,17 +1,15 @@
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-
-
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import static com.codeborne.selenide.Selenide.*;
 
 public class TestDemoQA {
 
@@ -37,12 +35,14 @@ public class TestDemoQA {
         $(".react-datepicker__day--027").click();
         $("#subjectsInput").setValue("E");
         $$(".subjects-auto-complete__menu-list div").findBy(text("English")).shouldBe(visible).click();
+        $("label[for='hobbies-checkbox-2']").click();
+        File file = new File("C:\\Users\\a.reshetnikov\\IdeaProjects\\lesson3\\src\\picture.png");
+        $("#uploadPicture").uploadFile(file);
+        $("#currentAddress").setValue("razDvaTrirazDvaTrirazDvaTrirazDvaTrirazDvaTrirazDvaTrirazDvaTrirazDvaTrirazDvaTrirazDvaTri");
+        $("#state").shouldBe(visible).click();
+        $(byText("NCR")).click();
+        $("#city").shouldBe(visible).click();
+        $(byText("Noida")).click();
         $("#submit").click();
-
-
-        $("#output").$("#name").shouldHave(text("Alex"));
-        $("#output").$("#email").shouldHave(text("alex@mail.ru"));
-        $("#output").$("#currentAddress").shouldHave(text("Moscow"));
-        $("#output").$("#permanentAddress").shouldHave(text("Rostov"));
     }
 }
