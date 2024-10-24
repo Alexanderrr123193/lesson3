@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import java.io.File;
 
@@ -9,32 +10,23 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class TestDemoQAPageObjectsTests {
+public class TestDemoQAPageObjectsTests extends TestBase {
 
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.timeout = 6000;
-    }
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     void formTest() {
-        open("/automation-practice-form");
-        $("#firstName").setValue("Semen");
-        $("#lastName").setValue("Petrovich");
-        $("#userEmail").setValue("mblo@email.com");
-        $("label[for='gender-radio-1']").click();
-        $("#userNumber").setValue("1234567890");
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("December");
-        $(".react-datepicker__year-select").selectOption("1992");
-        $(".react-datepicker__day--027").click();
+        registrationPage.openPage()
+                .setFirstName("Semen")
+                .setLastName("Petrovich")
+                .setUserEmail("pochta@mail.com")
+                .selectMaleGender()
+                .setUserNumber("1234567890")
+                .setDateOfBirth("027", "December", "1992");
         $("#subjectsInput").setValue("E");
         $$(".subjects-auto-complete__menu-list div").findBy(text("English")).shouldBe(visible).click();
         $("label[for='hobbies-checkbox-2']").click();
-        File file = new File("C:\\Users\\a.reshetnikov\\IdeaProjects\\lesson3\\src\\picture.png");
+        File file = new File("C:\\Users\\a.reshetnikov\\IdeaProjects\\lesson3\\src\\test\\resources\\picture.png");
         $("#uploadPicture").uploadFile(file);
         $("#currentAddress").setValue("SomeText");
         $("#state").shouldBe(visible).click();
@@ -45,8 +37,8 @@ public class TestDemoQAPageObjectsTests {
 
         $(".modal-title").shouldHave(text("Thanks for submitting the form"));
 
-        $$(".table-responsive tbody tr").filterBy(text("Student Name")).first().shouldHave(text("Semen Petrovich"));
-        $$(".table-responsive tbody tr").filterBy(text("Student Email")).first().shouldHave(text("mblo@email.com"));
+        registrationPage.checkResult("Student Name","Semen Petrovich")
+                        .checkResult("Student Email","pochta@mail.com");
         $$(".table-responsive tbody tr").filterBy(text("Gender")).first().shouldHave(text("Male"));
         $$(".table-responsive tbody tr").filterBy(text("Mobile")).first().shouldHave(text("1234567890"));
         $$(".table-responsive tbody tr").filterBy(text("Date of Birth")).first().shouldHave(text("27 December,1992"));
