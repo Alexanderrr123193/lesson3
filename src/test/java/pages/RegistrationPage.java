@@ -111,4 +111,8 @@ public class RegistrationPage {
         resultTable.checkResult(key, value);
         return this;
     }
-}
+    public RegistrationPage checkModalTitleNotVisible(String title) {
+        modalTitle.shouldNotBe(visible);
+        return this;
+    }}
+

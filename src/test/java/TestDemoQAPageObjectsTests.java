@@ -34,4 +34,30 @@ public class TestDemoQAPageObjectsTests extends TestBase {
                 .checkResult("Address", "SomeText")
                 .checkResult("State and City", "NCR Noida");
     }
+    @Test
+    void negative(){
+        registrationPage.openPage()
+                .submitForm();
+
+        registrationPage.checkModalTitleNotVisible("Thanks for submitting the form");
+
+
+    }
+    @Test
+    void minimal(){
+        registrationPage.openPage()
+                .setFirstName("Semen")
+                .setLastName("Petrovich")
+                .selectMaleGender()
+                .setUserNumber("1234567890")
+                .submitForm();
+
+        registrationPage.checkModalTitle("Thanks for submitting the form")
+                .checkResult("Student Name", "Semen Petrovich")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "1234567890");
+
+
+
+    }
 }
