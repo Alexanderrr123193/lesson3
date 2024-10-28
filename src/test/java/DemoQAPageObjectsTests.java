@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-public class TestDemoQAPageObjectsTests extends TestBase {
+public class DemoQAPageObjectsTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
 
@@ -16,7 +16,7 @@ public class TestDemoQAPageObjectsTests extends TestBase {
                 .setDateOfBirth("27", "December", "1992")
                 .userSubjectInput("English")
                 .selectHobby("Reading")
-                .uploadPicture("src/test/resources/picture.png")
+                .uploadPicture("picture.png")
                 .setAddress("SomeText")
                 .selectState("NCR")
                 .selectCity("Noida")
@@ -35,7 +35,7 @@ public class TestDemoQAPageObjectsTests extends TestBase {
                 .checkResult("State and City", "NCR Noida");
     }
     @Test
-    void negative(){
+    void negativeTest(){
         registrationPage.openPage()
                 .submitForm();
 
@@ -44,7 +44,7 @@ public class TestDemoQAPageObjectsTests extends TestBase {
 
     }
     @Test
-    void minimal(){
+    void minimalTest(){
         registrationPage.openPage()
                 .setFirstName("Semen")
                 .setLastName("Petrovich")

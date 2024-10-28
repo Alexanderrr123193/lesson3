@@ -1,6 +1,5 @@
 package pages;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.Calendar;
 import pages.components.ResultTable;
@@ -14,7 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
     private ResultTable resultTable = new ResultTable();
-    private SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
             userNumberInput = $("#userNumber"),
@@ -75,8 +74,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage uploadPicture(String path) {
-        pictureLoader.uploadFile(new File(path));
+    public RegistrationPage uploadPicture(String fileName) {
+        pictureLoader.uploadFromClasspath(fileName);
         return this;
     }
 
