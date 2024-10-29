@@ -45,8 +45,20 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage selectMaleGender() {
-        $("label[for='gender-radio-1']").click();
+    public RegistrationPage selectGender(String gender) {
+        switch (gender) {
+            case "Male":
+                $("label[for='gender-radio-1']").click();
+                break;
+            case "Female":
+                $("label[for='gender-radio-2']").click();
+                break;
+            case "Other":
+                $("label[for='gender-radio-3']").click();
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown gender: " + gender);
+        }
         return this;
     }
 

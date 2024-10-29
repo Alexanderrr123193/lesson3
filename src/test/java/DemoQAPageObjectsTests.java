@@ -1,8 +1,11 @@
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import utils.Random;
 
 import java.util.Locale;
+
+import static utils.Random.*;
 
 public class DemoQAPageObjectsTests extends TestBase {
     Faker faker = new Faker(new Locale("en"));
@@ -12,6 +15,10 @@ public class DemoQAPageObjectsTests extends TestBase {
     String userEmail = faker.internet().emailAddress();
     String userNumber = faker.number().digits(10);
     String address = faker.address().fullAddress();
+
+    String gender = Random.getRandomGender();
+    String userSubject = getRandomSubject();
+    //String userHobbies = getUserHobbies();
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
@@ -20,10 +27,10 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
-                .selectMaleGender()
+                .selectGender(gender)
                 .setUserNumber(userNumber)
                 .setDateOfBirth("27", "December", "1992")
-                .userSubjectInput("English")
+                .userSubjectInput(userSubject)
                 .selectHobby("Reading")
                 .uploadPicture("picture.png")
                 .setAddress(address)
@@ -34,10 +41,10 @@ public class DemoQAPageObjectsTests extends TestBase {
         registrationPage.checkModalTitle("Thanks for submitting the form")
                 .checkResult("Student Name", firstName + " " + lastName)
                 .checkResult("Student Email", userEmail)
-                .checkResult("Gender", "Male")
+                .checkResult("Gender", gender)
                 .checkResult("Mobile", userNumber)
                 .checkResult("Date of Birth", "27 December,1992")
-                .checkResult("Subjects", "English")
+                .checkResult("Subjects", userSubject)
                 .checkResult("Hobbies", "Reading")
                 .checkResult("Picture", "picture.png")
                 .checkResult("Address", address)
@@ -57,13 +64,13 @@ public class DemoQAPageObjectsTests extends TestBase {
         registrationPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
-                .selectMaleGender()
+                .selectGender(gender)
                 .setUserNumber(userNumber)
                 .submitForm();
 
         registrationPage.checkModalTitle("Thanks for submitting the form")
                 .checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Gender", "Male")
+                .checkResult("Gender", gender)
                 .checkResult("Mobile", userNumber);
 
 
