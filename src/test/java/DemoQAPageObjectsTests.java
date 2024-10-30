@@ -18,7 +18,7 @@ public class DemoQAPageObjectsTests extends TestBase {
 
     String gender = Random.getRandomGender();
     String userSubject = getRandomSubject();
-    //String userHobbies = getUserHobbies();
+    String hobby = getUserHobbies();
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
@@ -31,7 +31,7 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .setUserNumber(userNumber)
                 .setDateOfBirth("27", "December", "1992")
                 .userSubjectInput(userSubject)
-                .selectHobby("Reading")
+                .selectHobby(hobby)
                 .uploadPicture("picture.png")
                 .setAddress(address)
                 .selectState("NCR")
@@ -45,7 +45,7 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .checkResult("Mobile", userNumber)
                 .checkResult("Date of Birth", "27 December,1992")
                 .checkResult("Subjects", userSubject)
-                .checkResult("Hobbies", "Reading")
+                .checkResult("Hobbies", hobby)
                 .checkResult("Picture", "picture.png")
                 .checkResult("Address", address)
                 .checkResult("State and City", "NCR Noida");

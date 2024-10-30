@@ -16,7 +16,7 @@ public class RegistrationPage {
             userEmailInput = $("#userEmail"),
             userNumberInput = $("#userNumber"),
             userSubjectInput = $("#subjectsInput"),
-            hobbiesCheckboxReading = $("label[for='hobbies-checkbox-2']"),
+            hobbyCheckbox = $("#hobbiesWrapper"),
             pictureLoader = $("#uploadPicture"),
             setAddressInput = $("#currentAddress"),
             stateDropdown = $("#state"),
@@ -80,7 +80,8 @@ public class RegistrationPage {
     }
 
     public RegistrationPage selectHobby(String hobby) {
-        hobbiesCheckboxReading.click();
+        // Логика для выбора нужного хобби на форме
+        $("#hobbiesWrapper").$(byText(hobby)).click();
         return this;
     }
 
