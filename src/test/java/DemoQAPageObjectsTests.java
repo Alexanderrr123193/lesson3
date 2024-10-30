@@ -21,6 +21,7 @@ public class DemoQAPageObjectsTests extends TestBase {
     String hobby = getUserHobbies();
     RegistrationPage registrationPage = new RegistrationPage();
 
+
     @Test
     void formTest() {
         registrationPage.openPage()
