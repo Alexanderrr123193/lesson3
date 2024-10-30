@@ -1,14 +1,14 @@
 package pages.components;
 
-import pages.RegistrationPage;
-
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class Calendar {
 
     public void setDate(String day, String month, String year) {
-        $(".react-datepicker__month-select").selectOption("December");
-        $(".react-datepicker__year-select").selectOption("1992");
-        $(".react-datepicker__day--027").click();
+        $(".react-datepicker__month-select").selectOption(month);
+        $(".react-datepicker__year-select").selectOption(year);
+        $$(".react-datepicker__day:not(.react-datepicker__day--outside-month)").findBy(text(day)).click();
     }
 }
