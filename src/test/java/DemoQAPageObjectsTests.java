@@ -22,6 +22,10 @@ public class DemoQAPageObjectsTests extends TestBase {
     String state = getRandomState();
     String city = getRandomCity(state);
     String randomPicture = Random.getRandomPicture();
+    String[] randomDateOfBirth = Random.TestDataGenerator.getRandomDateOfBirth();
+    String day = randomDateOfBirth[0];
+    String month = randomDateOfBirth[1];
+    String year = randomDateOfBirth[2];
     RegistrationPage registrationPage = new RegistrationPage();
 
 
@@ -33,7 +37,7 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .setUserEmail(userEmail)
                 .selectGender(gender)
                 .setUserNumber(userNumber)
-                .setDateOfBirth("27", "December", "1992")
+                .setDateOfBirth(day, month, year)
                 .userSubjectInput(userSubject)
                 .selectHobby(hobby)
                 .uploadPicture(randomPicture)
@@ -47,7 +51,7 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .checkResult("Student Email", userEmail)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", userNumber)
-                .checkResult("Date of Birth", "27 December,1992")
+                .checkResult("Date of Birth", day + " " + month + ", " + year)
                 .checkResult("Subjects", userSubject)
                 .checkResult("Hobbies", hobby)
                 .checkResult("Picture", randomPicture)
