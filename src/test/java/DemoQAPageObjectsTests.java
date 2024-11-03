@@ -19,6 +19,9 @@ public class DemoQAPageObjectsTests extends TestBase {
     String gender = Random.getRandomGender();
     String userSubject = getRandomSubject();
     String hobby = getUserHobbies();
+    String state = getRandomState();
+    String city = getRandomCity(state);
+    String randomPicture = Random.getRandomPicture();
     RegistrationPage registrationPage = new RegistrationPage();
 
 
@@ -33,10 +36,10 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .setDateOfBirth("27", "December", "1992")
                 .userSubjectInput(userSubject)
                 .selectHobby(hobby)
-                .uploadPicture("picture.png")
+                .uploadPicture(randomPicture)
                 .setAddress(address)
-                .selectState("NCR")
-                .selectCity("Noida")
+                .selectState(state)
+                .selectCity(city)
                 .submitForm();
 
         registrationPage.checkModalTitle("Thanks for submitting the form")
@@ -47,9 +50,9 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .checkResult("Date of Birth", "27 December,1992")
                 .checkResult("Subjects", userSubject)
                 .checkResult("Hobbies", hobby)
-                .checkResult("Picture", "picture.png")
+                .checkResult("Picture", randomPicture)
                 .checkResult("Address", address)
-                .checkResult("State and City", "NCR Noida");
+                .checkResult("State and City", state + " " + city);
     }
     @Test
     void negativeTest(){
