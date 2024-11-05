@@ -81,7 +81,5 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", userNumber);
 
-
-
     }
 }
