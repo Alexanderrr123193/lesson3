@@ -37,7 +37,7 @@ public class TestDemoQA {
         $("#subjectsInput").setValue("E");
         $$(".subjects-auto-complete__menu-list div").findBy(text("English")).shouldBe(visible).click();
         $("label[for='hobbies-checkbox-2']").click();
-        File file = new File("C:\\Users\\a.reshetnikov\\IdeaProjects\\lesson3\\src\\picture.png");
+        File file = new File("C:\\Users\\a.reshetnikov\\IdeaProjects\\lesson3\\src\\test\\resources\\picture.png");
         $("#uploadPicture").uploadFile(file);
         $("#currentAddress").setValue("SomeText");
         $("#state").shouldBe(visible).click();
