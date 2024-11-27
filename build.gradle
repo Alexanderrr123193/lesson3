@@ -5,7 +5,7 @@ plugins {
 
 allure {
     report {
-        version.set("2.21.0") // Укажите версию Allure
+        version.set("2.29.0") // Укажите версию Allure
     }
     adapter {
         aspectjWeaver.set(true)
