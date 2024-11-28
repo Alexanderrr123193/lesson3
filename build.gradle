@@ -31,8 +31,7 @@ dependencies {
             'org.yaml:snakeyaml:1.33')
 }
 
-task simple_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("simple")
-    }
+
+test {
+    useJUnitPlatform()
 }

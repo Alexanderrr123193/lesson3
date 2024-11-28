@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 import static java.lang.Thread.sleep;
 
+
 public class TestDemoQA {
 
     @BeforeAll
@@ -24,7 +25,7 @@ public class TestDemoQA {
     }
 
     @Test
-    @Tag("simple")
+
     void formTest() {
         open("/automation-practice-form");
         $("#firstName").setValue("Semen");
