@@ -3,6 +3,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.File;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.util.Map;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -28,7 +30,7 @@ public class TestDemoQA {
     }
 
     @Test
-    void formTest() {
+    void formTest() throws URISyntaxException {
         open("/automation-practice-form");
 
         // Заполнение формы
@@ -50,9 +52,8 @@ public class TestDemoQA {
         $("label[for='hobbies-checkbox-2']").click();
 
         // Загрузка файла
-        File file = new File(getClass().getClassLoader().getResource("picture.png").getFile());
+        File file = Paths.get(getClass().getClassLoader().getResource("picture.png").toURI()).toFile();
         $("#uploadPicture").uploadFile(file);
-
 
         // Ввод адреса
         $("#currentAddress").setValue("SomeText");
