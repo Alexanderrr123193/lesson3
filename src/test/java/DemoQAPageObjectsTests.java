@@ -3,9 +3,7 @@ import io.qameta.allure.Step;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.Random;
-
 import java.util.Locale;
-
 import static utils.Random.*;
 
 public class DemoQAPageObjectsTests extends TestBase {
@@ -41,10 +39,11 @@ public class DemoQAPageObjectsTests extends TestBase {
     private void openFormPage() {
         registrationPage.openPage();
     }
-
     @Step("Заполнение формы с данными")
     private void fillInForm() {
-        registrationPage.setFirstName(firstName)
+        registrationPage
+                .closeBanners()
+                .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
                 .selectGender(gender)
@@ -70,7 +69,7 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .checkResult("Student Email", userEmail)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", userNumber)
-                .checkResult("Date of Birth", day + " " + month + ", " + year)
+                .checkResult("Date of Birth", ("Date of Birth " + day + " " + month + ", " + year).trim())
                 .checkResult("Subjects", userSubject)
                 .checkResult("Hobbies", hobby)
                 .checkResult("Picture", randomPicture)
