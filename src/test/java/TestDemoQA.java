@@ -9,6 +9,8 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
+import java.io.File;
+import java.net.URL;
 
 public class TestDemoQA {
 
@@ -50,8 +52,9 @@ public class TestDemoQA {
         $("label[for='hobbies-checkbox-2']").click();
 
         // Загрузка файла
-        File file = new File("C:\\Users\\a.reshetnikov\\IdeaProjects\\lesson3\\src\\test\\resources\\picture.png");
+        File file = new File(getClass().getClassLoader().getResource("picture.png").getFile());
         $("#uploadPicture").uploadFile(file);
+
 
         // Ввод адреса
         $("#currentAddress").setValue("SomeText");
