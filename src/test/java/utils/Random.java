@@ -48,7 +48,7 @@ public class Random {
             case "Haryana":
                 return faker.options().option("Karnal", "Panipat");
             case "Rajasthan":
-                return faker.options().option("Jaipur", "Jodhpur");
+                return faker.options().option("Jaipur", "Jaiselmer");
             default:
                 return "City not found";
         }
