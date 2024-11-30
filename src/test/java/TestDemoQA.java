@@ -50,8 +50,9 @@ public class TestDemoQA {
         $("label[for='hobbies-checkbox-2']").click();
 
         // Загрузка файла
-        File file = new File("C:\\Users\\a.reshetnikov\\IdeaProjects\\lesson3\\src\\test\\resources\\picture.png");
+        File file = new File(getClass().getClassLoader().getResource("picture.png").getFile());
         $("#uploadPicture").uploadFile(file);
+
 
         // Ввод адреса
         $("#currentAddress").setValue("SomeText");
