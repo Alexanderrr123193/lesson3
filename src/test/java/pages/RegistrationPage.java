@@ -36,25 +36,25 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setFirstName(String value) {
-        scrollTo(firstNameInput);  // Прокручиваем до поля ввода имени
+        scrollTo(firstNameInput);
         firstNameInput.setValue(value);
         return this;
     }
 
     public RegistrationPage setLastName(String value) {
-        scrollTo(lastNameInput);  // Прокручиваем до поля ввода фамилии
+        scrollTo(lastNameInput);
         lastNameInput.setValue(value);
         return this;
     }
 
     public RegistrationPage setUserEmail(String value) {
-        scrollTo(userEmailInput);  // Прокручиваем до поля ввода email
+        scrollTo(userEmailInput);
         userEmailInput.setValue(value);
         return this;
     }
 
     public RegistrationPage selectGender(String gender) {
-        scrollTo($("label[for='gender-radio-1']"));  // Прокручиваем до поля выбора пола
+        scrollTo($("label[for='gender-radio-1']"));
         switch (gender) {
             case "Male":
                 $("label[for='gender-radio-1']").click();
@@ -72,59 +72,59 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setUserNumber(String value) {
-        scrollTo(userNumberInput);  // Прокручиваем до поля ввода номера телефона
+        scrollTo(userNumberInput);
         userNumberInput.setValue(value);
         return this;
     }
 
     public RegistrationPage setDateOfBirth(String day, String month, String year) {
-        scrollTo($("#dateOfBirthInput"));  // Прокручиваем до поля ввода даты рождения
+        scrollTo($("#dateOfBirthInput"));
         $("#dateOfBirthInput").click();
         new Calendar().setDate(day, month, year);
         return this;
     }
 
     public RegistrationPage userSubjectInput(String subject) {
-        scrollTo(userSubjectInput);  // Прокручиваем до поля ввода предмета
+        scrollTo(userSubjectInput);
         userSubjectInput.setValue(subject.substring(0, 1));
         $$(".subjects-auto-complete__menu-list div").findBy(text(subject)).click();
         return this;
     }
 
     public RegistrationPage selectHobby(String hobby) {
-        scrollTo(hobbyCheckbox);  // Прокручиваем до блока выбора хобби
+        scrollTo(hobbyCheckbox);
         $("#hobbiesWrapper").$(byText(hobby)).click();
         return this;
     }
 
     public RegistrationPage uploadPicture(String fileName) {
-        scrollTo(pictureLoader);  // Прокручиваем до поля загрузки изображения
+        scrollTo(pictureLoader);
         pictureLoader.uploadFromClasspath(fileName);
         return this;
     }
 
     public RegistrationPage setAddress(String value) {
-        scrollTo(setAddressInput);  // Прокручиваем до поля ввода адреса
+        scrollTo(setAddressInput);
         setAddressInput.setValue(value);
         return this;
     }
 
     public RegistrationPage selectState(String state) {
-        scrollTo(stateDropdown);  // Прокручиваем до выпадающего списка для выбора штата
+        scrollTo(stateDropdown);
         stateDropdown.shouldBe(visible).click();
         $(byText(state)).click();
         return this;
     }
 
     public RegistrationPage selectCity(String city) {
-        scrollTo(cityDropdown);  // Прокручиваем до выпадающего списка для выбора города
+        scrollTo(cityDropdown);
         cityDropdown.shouldBe(visible).click();
         $(byText(city)).click();
         return this;
     }
 
     public RegistrationPage submitForm() {
-        scrollTo(submitButton);  // Прокручиваем до кнопки отправки формы
+        scrollTo(submitButton);
         submitButton.click();
         return this;
     }
