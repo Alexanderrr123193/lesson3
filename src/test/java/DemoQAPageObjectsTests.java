@@ -1,10 +1,9 @@
 import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.Random;
-
 import java.util.Locale;
-
 import static utils.Random.*;
 
 public class DemoQAPageObjectsTests extends TestBase {
@@ -28,10 +27,22 @@ public class DemoQAPageObjectsTests extends TestBase {
     String year = randomDateOfBirth[2];
     RegistrationPage registrationPage = new RegistrationPage();
 
-
     @Test
     void formTest() {
-        registrationPage.openPage()
+        openFormPage();
+        fillInForm();
+        submitForm();
+        checkResults();
+    }
+
+    @Step("Открытие страницы формы")
+    private void openFormPage() {
+        registrationPage.openPage();
+    }
+    @Step("Заполнение формы с данными")
+    private void fillInForm() {
+        registrationPage
+                .closeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
@@ -43,30 +54,37 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .uploadPicture(randomPicture)
                 .setAddress(address)
                 .selectState(state)
-                .selectCity(city)
-                .submitForm();
+                .selectCity(city);
+    }
 
+    @Step("Отправка формы")
+    private void submitForm() {
+        registrationPage.submitForm();
+    }
+
+    @Step("Проверка результатов отправки формы")
+    private void checkResults() {
         registrationPage.checkModalTitle("Thanks for submitting the form")
                 .checkResult("Student Name", firstName + " " + lastName)
                 .checkResult("Student Email", userEmail)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", userNumber)
-                .checkResult("Date of Birth", day + " " + month + ", " + year)
+                .checkResult("Date of Birth", ("Date of Birth " + day + " " + month + ", " + year).trim())
                 .checkResult("Subjects", userSubject)
                 .checkResult("Hobbies", hobby)
                 .checkResult("Picture", randomPicture)
                 .checkResult("Address", address)
                 .checkResult("State and City", state + " " + city);
     }
+
     @Test
     void negativeTest(){
         registrationPage.openPage()
                 .submitForm();
 
         registrationPage.checkModalTitleNotVisible("Thanks for submitting the form");
-
-
     }
+
     @Test
     void minimalTest(){
         registrationPage.openPage()
@@ -80,6 +98,5 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .checkResult("Student Name", firstName + " " + lastName)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", userNumber);
-
     }
 }
