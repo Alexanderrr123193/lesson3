@@ -35,11 +35,11 @@ public class DemoQAPageObjectsTests extends TestBase {
         checkResults();
     }
 
-    @Step("Открытие страницы формы")
+    @Step("Открыть страницу")
     private void openFormPage() {
         registrationPage.openPage();
     }
-    @Step("Заполнение формы с данными")
+    @Step("Заполнить данными")
     private void fillInForm() {
         registrationPage
                 .closeBanners()
@@ -57,12 +57,12 @@ public class DemoQAPageObjectsTests extends TestBase {
                 .selectCity(city);
     }
 
-    @Step("Отправка формы")
+    @Step("Отправить")
     private void submitForm() {
         registrationPage.submitForm();
     }
 
-    @Step("Проверка результатов отправки формы")
+    @Step("Проверка результатов формы")
     private void checkResults() {
         registrationPage.checkModalTitle("Thanks for submitting the form")
                 .checkResult("Student Name", firstName + " " + lastName)
@@ -79,24 +79,48 @@ public class DemoQAPageObjectsTests extends TestBase {
 
     @Test
     void negativeTest() {
-        registrationPage.openPage()
-        .scrollToSubmitButton()
-        .submitForm()
-        .checkModalTitleNotVisible("Thanks for submitting the form");
+        openPageForNegativeTest();
+        submitForm();
+        checkModalTitleNotVisible();
+    }
+
+    @Step("Открытие страницы для негативного теста")
+    private void openPageForNegativeTest() {
+        registrationPage.openPage().scrollToSubmitButton();
+    }
+
+    @Step("Проверка, что модальное окно не отображается")
+    private void checkModalTitleNotVisible() {
+        registrationPage.checkModalTitleNotVisible("Thanks for submitting the form");
     }
 
     @Test
-    void minimalTest(){
+    void minimalTest() {
+        openMinimalForm();
+        submitMinimalForm();
+        checkMinimalResults();
+    }
+
+    @Step("Заполнить данные")
+    private void openMinimalForm() {
         registrationPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .selectGender(gender)
-                .setUserNumber(userNumber)
-                .submitForm();
+                .setUserNumber(userNumber);
+    }
 
+    @Step("Отправить данные")
+    private void submitMinimalForm() {
+        registrationPage.submitForm();
+    }
+
+    @Step("Проверка данных")
+    private void checkMinimalResults() {
         registrationPage.checkModalTitle("Thanks for submitting the form")
                 .checkResult("Student Name", firstName + " " + lastName)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", userNumber);
     }
 }
+
