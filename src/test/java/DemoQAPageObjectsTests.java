@@ -78,11 +78,11 @@ public class DemoQAPageObjectsTests extends TestBase {
     }
 
     @Test
-    void negativeTest(){
+    void negativeTest() {
         registrationPage.openPage()
-                .submitForm();
-
-        registrationPage.checkModalTitleNotVisible("Thanks for submitting the form");
+        .scrollToSubmitButton()
+        .submitForm()
+        .checkModalTitleNotVisible("Thanks for submitting the form");
     }
 
     @Test

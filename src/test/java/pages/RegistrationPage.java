@@ -150,4 +150,8 @@ public class RegistrationPage {
         executeJavaScript("$('footer').remove()");
         return this;
     }
+    public RegistrationPage scrollToSubmitButton() {
+        submitButton.scrollIntoView(true);
+        return this;
+    }
 }
