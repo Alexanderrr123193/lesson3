@@ -37,3 +37,7 @@ test {
     useJUnitPlatform()
     systemProperties(System.getProperties())
 }
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+
+}
