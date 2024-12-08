@@ -1,0 +1,5 @@
+7542825892:AAEWYe_lze0slG5hHiXpmtqsk_9tiqaqjJw
+
+-1002002286009
+
+https://api.telegram.org/bot7542825892:AAEWYe_lze0slG5hHiXpmtqsk_9tiqaqjJw/getUpdates

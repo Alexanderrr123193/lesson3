@@ -1,0 +1,20 @@
+{
+  "base": {
+    "logo": "",
+    "project": "Test project",
+    "environment": "",
+    "comment": "comment here @alexander_r123",
+    "reportLink": "",
+    "language": "ru",
+    "allureFolder": "build/allure-report/",
+    "enableChart": true,
+    "enableSuitesPublishing": false,
+    "customData": {}
+  },
+  "telegram": {
+    "token": "7542825892:AAEWYe_lze0slG5hHiXpmtqsk_9tiqaqjJw",
+    "chat": "-1002002286009",
+    "replyTo": "",
+    "templatePath": "/templates/telegram.ftl"
+  }
+}
